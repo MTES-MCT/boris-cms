@@ -37,6 +37,12 @@ DEBUG = True if os.getenv("DEBUG") == "True" else False
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1, localhost").replace(" ", "").split(",")
 
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = []
+for host in ALLOWED_HOSTS:
+  CORS_ORIGIN_WHITELIST.append("https://" + host)
+  CORS_ORIGIN_WHITELIST.append("http://" + host)
+
 HOST_URL = os.getenv("HOST_URL", "localhost")
 
 INTERNAL_IPS = [
@@ -82,6 +88,7 @@ INSTALLED_APPS = [
     "blog",
     "events",
     "forms",
+    "corsheaders"
 ]
 
 # Only add these on a dev machine, outside of tests
@@ -102,6 +109,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 # Only add this on a dev machine, outside of tests

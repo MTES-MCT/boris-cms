@@ -33,6 +33,7 @@ beautifulsoup4 = "^4.12.3"
 django-taggit = "^5.0.1"
 wagtail-localize = "^1.9"
 icalendar = "^5.0.13"
+django-cors-headers = "^4.6.0"
 
 
 [tool.poetry.group.dev.dependencies]
